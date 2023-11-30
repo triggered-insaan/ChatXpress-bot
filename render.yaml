@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: ChatXpress Bot
+    runtime: python
+    region: singapore
+    branch: master
+    rootDir: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn web.app:app & python3 -m worker
+    autoDeploy: false
+
+    envVars:
+      - fromGroup: ChatXpress-Bot
+    plan: free
